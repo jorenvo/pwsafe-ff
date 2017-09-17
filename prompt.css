@@ -1,0 +1,8 @@
+#password {
+    border:1px solid #aaaaaa;
+    border-radius: 5px;
+}
+
+.invalid {
+    background-color: #ffdddd;
+}

@@ -1,0 +1,46 @@
+{
+
+    "description": "Integrates with pwsafe (http://nsd.dyndns.org/pwsafe/)",
+    "manifest_version": 2,
+    "name": "pwsafe-ff",
+    "version": "1.0",
+    "icons": {
+        "48": "icons/key.svg",
+        "96": "icons/key.svg"
+    },
+
+    "applications": {
+        "gecko": {
+            "id": "pwsafe-ff@jorenvo.org",
+            "strict_min_version": "50.0"
+        }
+    },
+
+    "background": {
+        "scripts": ["background.js"]
+    },
+
+    "content_scripts": [
+        {
+            "matches": ["*://*/*"],
+            "js": ["page-listener.js"]
+        }
+    ],
+
+    "browser_action": {
+        "default_icon": "icons/key.svg",
+        "default_popup": "prompt.html",
+        "browser_style": false
+    },
+
+    "commands": {
+        "_execute_browser_action": {
+            "suggested_key": {
+                "default": "Ctrl+Shift+U"
+            }
+        }
+    },
+
+    "permissions": ["nativeMessaging", "tabs"]
+
+}
