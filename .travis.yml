@@ -1,0 +1,22 @@
+language: python
+python:
+  - "3.6"
+env:
+  - FIREFOX_PATH=/opt/ff_nightly/firefox/firefox-bin
+  - FIREFOX_PATH=/opt/ff_developer/firefox/firefox-bin
+  - FIREFOX_PATH=/opt/ff_beta/firefox/firefox-bin
+  - FIREFOX_PATH=/opt/ff_stable/firefox/firefox-bin
+before_script:
+  - wget 'https://download.mozilla.org/?product=firefox-nightly-latest-ssl&os=linux64&lang=en-US' -O /tmp/nightly.tar.gz
+  - mkdir /opt/ff_nightly && tar xf /tmp/nightly.tar.gz -C /opt/ff_nightly/
+  - wget 'https://download.mozilla.org/?product=firefox-devedition-latest-ssl&os=linux64&lang=en-US' -O /tmp/developer.tar.gz
+  - mkdir /opt/ff_developer && tar xf /tmp/developer.tar.gz -C /opt/ff_developer/
+  - wget 'https://download.mozilla.org/?product=firefox-57.0b8-SSL&os=linux64&lang=en-US' -O /tmp/beta.tar.gz  # todo find 'latest' links 
+  - mkdir /opt/ff_beta && tar xf /tmp/beta.tar.gz -C /opt/ff_beta/
+  - wget 'https://download.mozilla.org/?product=firefox-56.0.1-SSL&os=linux64&lang=en-US' -O /tmp/stable.tar.gz
+  - mkdir /opt/ff_stable && tar xf /tmp/stable.tar.gz -C /opt/ff_stable/
+  - wget 'https://github.com/mozilla/geckodriver/releases/download/v0.19.0/geckodriver-v0.19.0-linux64.tar.gz' -O /tmp/geckodriver.tar.gz
+  - sudo tar xf /tmp/geckodriver.tar.gz -C /usr/bin
+  - pip install selenium
+script:
+  - tests/test_page_listener.py

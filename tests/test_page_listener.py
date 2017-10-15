@@ -39,10 +39,12 @@ def _format_url(url):
 os.environ['MOZ_HEADLESS'] = '1'
 
 # Select your Firefox binary.
-binary = FirefoxBinary('/opt/firefox/firefox-bin', log_file=sys.stdout)
+firefox_path = os.environ.get('FIREFOX_PATH', '/opt/firefox/firefox-bin')
+binary = FirefoxBinary(firefox_path, log_file=sys.stdout)
 
 # Start selenium with the configured binary.
 driver = webdriver.Firefox(firefox_binary=binary)
+print('running tests with {} {} ({})'.format(driver.capabilities['browserName'], driver.capabilities['browserVersion'], firefox_path))
 
 with open('./page-listener.js') as f:
     page_listener_js = 'let browser = false;' + f.read() + 'return logIn({username: "username@gmail.com", password: "password"}, "dont_submit");'
