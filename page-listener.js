@@ -82,7 +82,12 @@ function getForm (inputs) {
 function submitForm (username_input, password_input) {
     let form = getForm([username_input, password_input]);
     if (form) {
-        form.submit();
+        let form_method = form.method;
+        if (form_method === 'post') {
+            form.submit();
+        } else {
+            console.error(`login form had the ${form_method} method instead of post, so not auto-submitting`);
+        }
     } else {
         console.error('couldn\'t find form');
     }
