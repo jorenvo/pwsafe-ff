@@ -54,7 +54,11 @@ function getElement (initial_css_selector, tie_breaker_keywords=[], tie_breaker_
 }
 
 function _filter_inputs_in_login_form (inputs) {
-    return inputs.filter((input) => _getHTML(getForm([input])).toLowerCase().includes('login'));
+    const LOGIN_FORM_KEYWORDS = ['login', 'sign_in', 'signin'];
+    return inputs.filter((input) => {
+        let login_form_html = _getHTML(getForm([input])).toLowerCase();
+        return LOGIN_FORM_KEYWORDS.some((keyword) => login_form_html.includes(keyword));
+    });
 }
 
 function getUsernameInput () {

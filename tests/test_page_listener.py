@@ -66,6 +66,7 @@ urls_to_test = [
     'https://twitch.tv/login',
     'https://www.odoo.com/web/login',
     'https://auth.hulu.com/web/login',
+    'https://www.goodreads.com/',
 ]
 
 failed_tests = False
