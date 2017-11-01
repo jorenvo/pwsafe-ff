@@ -59,7 +59,7 @@ function _filter_inputs_in_login_form (inputs) {
 
 function getUsernameInput () {
     return getElement('input[type=email], input[type=text], input:not([type])',
-                      ['username', 'login', 'onlineid'],
+                      ['username', 'login', 'onlineid', 'signin'],
                       _filter_inputs_in_login_form);
 }
 
